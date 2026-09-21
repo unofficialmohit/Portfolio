@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, Mail, CheckCircle2, Copy, Check, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { Send, Mail, CheckCircle2, Copy, Check, ArrowUpRight, ShieldCheck, AlertCircle, X } from 'lucide-react';
 import { SocialLink } from '../../types';
 import { sendCorrespondence, EmailSendResult } from '../../services/emailService';
 
@@ -33,9 +33,33 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [dispatchResult, setDispatchResult] = useState<EmailSendResult | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const maxChars = 800;
   const targetRecipient = 'mohitgujjar2121@gmail.com';
+
+  useEffect(() => {
+    if (submitError) {
+      const timer = setTimeout(() => {
+        setSubmitError(null);
+      }, 9000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitError]);
+
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+    if (submitError) {
+      setSubmitError(null);
+    }
+  };
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -60,6 +84,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const result = await sendCorrespondence({
         name: formData.name,
@@ -71,13 +96,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       setIsSubmitted(true);
     } catch (err: any) {
       console.error('Failed to dispatch letter via EmailJS:', err);
-      // Graceful fallback for UI so user sees clear feedback
-      setDispatchResult({
-        success: true,
-        message: err?.message || 'Delivered to inbox',
-        recipient: targetRecipient,
-      });
-      setIsSubmitted(true);
+      const rawMsg = err?.message || 'Delivery encountered an issue';
+      let friendlyMsg = rawMsg;
+      if (rawMsg.toLowerCase().includes('service id not found') || rawMsg.toLowerCase().includes('service_id')) {
+        friendlyMsg = 'Email service ID not found. Please verify your VITE_EMAILJS_SERVICE_ID in the .env file or EmailJS dashboard.';
+      } else if (rawMsg.toLowerCase().includes('template')) {
+        friendlyMsg = 'Email template ID not found. Please verify your VITE_EMAILJS_TEMPLATE_ID in the .env file.';
+      } else if (rawMsg.toLowerCase().includes('public key') || rawMsg.toLowerCase().includes('public_key')) {
+        friendlyMsg = 'Email public key invalid. Please verify your VITE_EMAILJS_PUBLIC_KEY in the .env file.';
+      }
+      setSubmitError(friendlyMsg);
+      setIsSubmitted(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -97,6 +126,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       message: '',
     });
     setErrors({});
+    setSubmitError(null);
     setIsSubmitted(false);
     setDispatchResult(null);
   };
@@ -329,6 +359,35 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       </div>
                     </div>
 
+                    {/* Submission Error Banner */}
+                    {submitError && (
+                      <div className="flex items-start justify-between gap-3 p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-red-800 dark:text-red-300 text-xs animate-in fade-in duration-200">
+                        <div className="flex items-start gap-2.5">
+                          <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+                          <div className="space-y-1">
+                            <span className="font-semibold block font-sans">Dispatch Unsuccessful</span>
+                            <p className="leading-relaxed">{submitError}</p>
+                            <a
+                              href={`mailto:${targetRecipient}?subject=${encodeURIComponent(
+                                formData.subject || 'Portfolio Inquiry'
+                              )}&body=${encodeURIComponent(formData.message)}`}
+                              className="inline-flex items-center gap-1 font-semibold underline hover:text-red-950 dark:hover:text-red-200 transition-colors pt-0.5"
+                            >
+                              Send directly via email client instead
+                            </a>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setSubmitError(null)}
+                          className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-200 p-1 rounded-lg transition-colors cursor-pointer"
+                          title="Dismiss error message"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    )}
+
                     {/* Name & Email Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
@@ -339,9 +398,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                           type="text"
                           required
                           value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
+                          onChange={(e) => handleInputChange('name', e.target.value)}
                           placeholder="Ada Lovelace"
                           className={`w-full px-4 py-2.5 rounded-xl bg-[#FAF5EB] dark:bg-[#151A22] border text-sm text-[#2C2419] dark:text-[#E8DFD1] placeholder-[#9E8F7C] dark:placeholder-[#6C7A8E] focus:outline-none focus:ring-2 focus:ring-[#C7622B]/30 ${
                             errors.name ? 'border-red-400' : 'border-[#DFCDB7] dark:border-[#2C384A]'
@@ -360,9 +417,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                           type="email"
                           required
                           value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
+                          onChange={(e) => handleInputChange('email', e.target.value)}
                           placeholder="ada@computing.org"
                           className={`w-full px-4 py-2.5 rounded-xl bg-[#FAF5EB] dark:bg-[#151A22] border text-sm text-[#2C2419] dark:text-[#E8DFD1] placeholder-[#9E8F7C] dark:placeholder-[#6C7A8E] focus:outline-none focus:ring-2 focus:ring-[#C7622B]/30 ${
                             errors.email ? 'border-red-400' : 'border-[#DFCDB7] dark:border-[#2C384A]'
@@ -383,9 +438,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         type="text"
                         required
                         value={formData.subject}
-                        onChange={(e) =>
-                          setFormData({ ...formData, subject: e.target.value })
-                        }
+                        onChange={(e) => handleInputChange('subject', e.target.value)}
                         placeholder="Mobile App Architecture Inquiry / Contract"
                         className={`w-full px-4 py-2.5 rounded-xl bg-[#FAF5EB] dark:bg-[#151A22] border text-sm text-[#2C2419] dark:text-[#E8DFD1] placeholder-[#9E8F7C] dark:placeholder-[#6C7A8E] focus:outline-none focus:ring-2 focus:ring-[#C7622B]/30 ${
                           errors.subject ? 'border-red-400' : 'border-[#DFCDB7] dark:border-[#2C384A]'
@@ -411,9 +464,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         rows={5}
                         maxLength={maxChars}
                         value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
+                        onChange={(e) => handleInputChange('message', e.target.value)}
                         placeholder="Share your goals, project timelines, ideas, or architectural challenges..."
                         className={`w-full px-4 py-3 rounded-xl bg-[#FAF5EB] dark:bg-[#151A22] border text-sm text-[#2C2419] dark:text-[#E8DFD1] placeholder-[#9E8F7C] dark:placeholder-[#6C7A8E] leading-relaxed focus:outline-none focus:ring-2 focus:ring-[#C7622B]/30 resize-y ${
                           errors.message ? 'border-red-400' : 'border-[#DFCDB7] dark:border-[#2C384A]'

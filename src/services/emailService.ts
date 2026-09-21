@@ -15,39 +15,32 @@ export interface EmailSendResult {
 
 export const TARGET_EMAIL = "mohitgujjar2121@gmail.com";
 
-// EmailJS Service Credentials (from .env or hardcoded project defaults)
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
 /**
  * Dispatches correspondence directly via EmailJS to mohitgujjar2121@gmail.com
  */
 export async function sendCorrespondence(
   payload: EmailPayload,
 ): Promise<EmailSendResult> {
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  if (!serviceId || !templateId || !publicKey) {
+    throw new Error(
+      "EmailJS credentials missing. Please check VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in .env.",
+    );
+  }
+
   const templateParams = {
-    from_name: payload.name,
-    from_email: payload.email,
-    name: payload.name,
-    email: payload.email,
-    reply_to: payload.email,
-    to_name: "Mohit",
-    to_email: TARGET_EMAIL,
-    recipient: TARGET_EMAIL,
-    subject: payload.subject,
-    message: payload.message,
+    name: `Portfolio Reply from ${payload.name}`,
+    email: TARGET_EMAIL,
+    message: `Name: ${payload.name}\nEmail: ${payload.email}\nSubject: ${payload.subject}\nMessage: ${payload.message}`,
   };
 
   try {
-    const response = await emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      templateParams,
-      {
-        publicKey: PUBLIC_KEY,
-      },
-    );
+    const response = await emailjs.send(serviceId, templateId, templateParams, {
+      publicKey: publicKey,
+    });
 
     console.log(
       "[EmailJS] Correspondence dispatched successfully:",
