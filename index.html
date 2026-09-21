@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohit Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Mohit, Full-Stack Developer specializing in React, React Native, Next.js, Expo, Node.js, and Express microservices."
+    />
+    <meta
+      name="keywords"
+      content="Mohit, Full-Stack Developer, React, React Native, Next.js, Expo, Node.js, Express.js, TypeScript, Python, Django, SSR, Portfolio"
+    />
+    <meta name="author" content="Mohit" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta
+      property="og:title"
+      content="Origami & Parchment - Paper Themed Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio of Mohit, Full-Stack Developer specializing in React, React Native, Next.js, Expo, Node.js, and Express microservices."
+    />
+    <meta property="og:site_name" content="Mohit Portfolio" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Origami & Parchment - Paper Themed Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Mohit, Full-Stack Developer specializing in React, React Native, Next.js, Expo, Node.js, and Express microservices."
+    />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "#mohit",
+            "name": "Mohit",
+            "jobTitle": "Full-Stack Developer",
+            "description": "Full-Stack Developer with ~3 years of experience building production-grade mobile, web, and backend applications in React, React Native, Next.js, and Node.js.",
+            "email": "mohitgujjar2121@gmail.com",
+            "telephone": "+91 7850980009",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Chandigarh",
+              "addressCountry": "IN"
+            },
+            "alumniOf": [
+              {
+                "@type": "EducationalOrganization",
+                "name": "Panjab University, Chandigarh",
+                "department": "Master of Computer Applications (MCA)"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "DAV College, Chandigarh",
+                "department": "Bachelor of Computer Applications (BCA)"
+              }
+            ],
+            "knowsAbout": [
+              "React.js",
+              "React Native",
+              "Next.js",
+              "Expo",
+              "TypeScript",
+              "Node.js",
+              "Express.js",
+              "NestJS",
+              "PostgreSQL",
+              "MongoDB",
+              "Python",
+              "Django",
+              "Server-Side Rendering (SSR)",
+              "Dynamic SEO & JSON-LD"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "#website",
+            "name": "Mohit — Full-Stack Developer Portfolio",
+            "description": "Portfolio of Mohit, Full-Stack Developer specializing in React, React Native, Next.js, Expo, Node.js, and Express microservices.",
+            "author": {
+              "@id": "#mohit"
+            }
+          }
+        ]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#F8F5EE" id="theme-color-meta" />
+    <script>
+      (function () {
+        try {
+          const saved = localStorage.getItem("portfolio_theme");
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          if (saved === "dark" || (!saved && prefersDark)) {
+            document.documentElement.classList.add("dark");
+            const meta = document.getElementById("theme-color-meta");
+            if (meta) meta.setAttribute("content", "#11141A");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body
+    class="bg-[#F8F5EE] dark:bg-[#11141A] text-[#2C2419] dark:text-[#E8DFD1] transition-colors duration-300 antialiased selection:bg-[#EAD8B7] dark:selection:bg-[#3D4A5E] selection:text-[#3D3325] dark:selection:text-[#F8F5EE]"
+  >
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

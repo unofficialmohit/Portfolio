@@ -1,0 +1,488 @@
+{
+  "personal": {
+    "name": "Mohit",
+    "role": "Full-Stack Developer",
+    "tagline": "Frontend (React, React Native, Next.js & Expo) • Backend (Node.js, Express, NestJS) • Python (Django)",
+    "status": "Available for High-Impact Engineering Roles",
+    "availability": "Full-Stack & Mobile Development",
+    "email": "mohitgujjar2121@gmail.com",
+    "phone": "+91 7850980009",
+    "location": "Chandigarh, India",
+    "resumeUrl": "#resume",
+    "bioIntro": "Full-Stack Developer with approximately 3 years of professional experience building production-grade mobile, web, and backend applications. Full expertise in React, React Native, Next.js, and Expo; backend engineering(NodeJS , Express JS), and  Python (Django).",
+    "bioStory": [
+      "Full expert in delivering scalable solutions using React, React.js, React Native, Next.js, and Expo. Solid backend engineering across Node.js, Express.js, NestJS, microservices architectures, and REST APIs, alongside good proficiency in Python with Django.",
+      "Experienced in multi-tenant SaaS platforms, Server-Side Rendering (SSR), technical SEO, and mobile deployment pipelines with Android Flavors, iOS Schemes, and OTA updates. Adept at third-party integrations (Stripe, OAuth, Maps, Analytics) and resolving complex production issues."
+    ]
+  },
+  "stats": [
+    {
+      "label": "Years Experience",
+      "value": "~3",
+      "unit": "yrs",
+      "subtext": "Production-grade apps"
+    },
+    {
+      "label": "Shipped Platforms",
+      "value": "12",
+      "unit": "apps",
+      "subtext": "Mobile, web & SaaS"
+    },
+    {
+      "label": "Open Source",
+      "value": "1",
+      "unit": "package",
+      "subtext": "rn-snappy-toast on npm"
+    },
+    {
+      "label": "Academic Score",
+      "value": "80%",
+      "unit": "score",
+      "subtext": "MCA & BCA Honors"
+    }
+  ],
+  "quickFacts": [
+    {
+      "id": "fact-1",
+      "title": "Full Expert Mastery",
+      "detail": "Production mastery across mobile and web architectures using React, React.js, React Native, Next.js & Expo.",
+      "color": "yellow",
+      "rotation": -1.5
+    },
+    {
+      "id": "fact-2",
+      "title": "Backend & Python",
+      "detail": "Solid backend engineering in Node.js, Express, NestJS, REST APIs & microservices; good proficiency in Python with Django.",
+      "color": "peach",
+      "rotation": 1.2
+    },
+    {
+      "id": "fact-3",
+      "title": "Open Source Creator",
+      "detail": "Creator and maintainer of rn-snappy-toast, a zero-dependency React Native notification library.",
+      "color": "green",
+      "rotation": -1
+    },
+    {
+      "id": "fact-4",
+      "title": "Personal Interests",
+      "detail": "Open-source development, exploring new technologies, and photography.",
+      "color": "blue",
+      "rotation": 2
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/unofficialmohit",
+      "label": "github.com/unofficialmohit",
+      "iconName": "Github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://in.linkedin.com/in/unofficialmohit",
+      "label": "linkedin.com/in/unofficialmohit",
+      "iconName": "Linkedin"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:mohitgujjar2121@gmail.com",
+      "label": "mohitgujjar2121@gmail.com",
+      "iconName": "Mail"
+    },
+    {
+      "platform": "Phone",
+      "url": "tel:+917850980009",
+      "label": "+91 7850980009",
+      "iconName": "Phone"
+    }
+  ],
+  "mascots": [
+    {
+      "id": "nerd",
+      "name": "Mohit (Cartoon Nerd)",
+      "type": "nerd",
+      "title": "Interactive Cursor Companion",
+      "catchphrase": "Coding, debugging, and building around the clock!",
+      "dialogueBySection": {
+        "hero": "Hey! Move your cursor and I'll track you with my eyes!",
+        "about": "Here's my engineering background, tech stack, and experience.",
+        "projects": "Check out these 12 production mobile, web & SaaS platforms!",
+        "education": "My MCA (2022-2024) & BCA (2019-2021) degrees with 80% distinction.",
+        "skills": "Full expert in React, React Native, Next.js & Expo, plus solid backend and Python proficiency!",
+        "contact": "Drop me an email or call—let's build something scalable!"
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-toast",
+      "title": "rn-snappy-toast",
+      "tagline": "Creator & Maintainer | React Native • npm Package",
+      "category": "Open Source",
+      "description": "Developed and published a lightweight, customizable, zero-dependency toast notification library for React Native. Implemented dynamic queue handling, swipe-to-dismiss gestures, custom positioning, and smooth animations optimized for modern React Native architecture with TypeScript typings.",
+      "highlights": [
+        "Lightweight, zero-dependency toast notification architecture",
+        "Dynamic queue handling, swipe-to-dismiss gestures & custom positioning",
+        "Full TypeScript typings, comprehensive documentation, and continuous npm releases"
+      ],
+      "technologies": ["React Native", "TypeScript", "npm", "Gestures", "Animations"],
+      "liveUrl": "https://www.npmjs.com/package/rn-snappy-toast",
+      "githubUrl": "https://github.com/unofficialmohit/rn-snappy-toast",
+      "npmUrl": "https://www.npmjs.com/package/rn-snappy-toast",
+      "appLinks": [
+        { "label": "npm Package", "platform": "web", "url": "https://www.npmjs.com/package/rn-snappy-toast" },
+        { "label": "GitHub Repo", "platform": "web", "url": "https://github.com/unofficialmohit/rn-snappy-toast" }
+      ],
+      "featured": true,
+      "paperNote": "Open Source • Source Code Available",
+      "aspectColor": "#EAD8B7"
+    },
+    {
+      "id": "proj-mindbase",
+      "title": "MindBase Apps (Student & Tutor)",
+      "tagline": "Live Multi-Tenant SaaS Scheduling Platform | React Native",
+      "category": "Mobile & SaaS",
+      "description": "Developed a multi-tenant SaaS scheduling platform comprising separate Student and Tutor applications to schedule sessions between students and teachers. Implemented parent onboarding within the student app and configured advanced mobile build workflows using Android Flavors and iOS Schemes to generate separate tenant-specific binaries from a single codebase.",
+      "highlights": [
+        "Separate Student & Tutor production apps on Google Play & App Store",
+        "Parent onboarding enabling management of children accounts within limits",
+        "Android Flavors & iOS Schemes for tenant-specific binary builds from one codebase",
+        "Custom origin handling for dynamic tenant data synchronization"
+      ],
+      "technologies": ["React Native", "SaaS", "Android Flavors", "iOS Schemes", "REST APIs"],
+      "appLinks": [
+        { "label": "Student (Google Play)", "platform": "playstore", "url": "https://play.google.com/store/apps/details?id=com.mindbase" },
+        { "label": "Student (App Store)", "platform": "appstore", "url": "https://apps.apple.com/us/app/mind-base/id6743792355" },
+        { "label": "Tutor (Google Play)", "platform": "playstore", "url": "https://play.google.com/store/apps/details?id=com.mindbase.instructor" },
+        { "label": "Tutor (App Store)", "platform": "appstore", "url": "https://apps.apple.com/us/app/mind-base-instructors/id6743792404" }
+      ],
+      "proprietaryNotice": "Client Production Codebase • Live on Google Play & App Store",
+      "featured": true,
+      "paperNote": "Student & Tutor on Play Store & App Store",
+      "aspectColor": "#D9E3D8"
+    },
+    {
+      "id": "proj-womenfirst",
+      "title": "Women First Jobs",
+      "tagline": "Live Job Platform | React Native • Next.js • React.js • Dynamic SEO",
+      "category": "Full Stack",
+      "description": "Delivered a comprehensive job platform featuring an employee-focused mobile app, dual employer/employee website workflows, and an administrative panel. Implemented dynamic Server-Side Rendering (SSR) across public job listings, dynamic Open Graph metadata, URL-based SEO controls, and JSON-LD structured schemas.",
+      "highlights": [
+        "Dynamic Server-Side Rendering (SSR) and JSON-LD structured schemas for search indexing",
+        "Mobile apps on Google Play & App Store plus high-traffic Next.js portal",
+        "Integrated Google Analytics, Facebook Pixel, LinkedIn Insight Tag, and reCAPTCHA",
+        "Google OAuth (including floated login) and LinkedIn login workflows"
+      ],
+      "technologies": ["React Native", "Next.js", "React.js", "SSR", "SEO", "OAuth", "Analytics"],
+      "appLinks": [
+        { "label": "Google Play", "platform": "playstore", "url": "https://play.google.com/store/apps/details?id=com.womenfirstjobs" },
+        { "label": "App Store", "platform": "appstore", "url": "https://apps.apple.com/us/app/women-first-jobs/id6754961365" },
+        { "label": "Live Website", "platform": "web", "url": "https://womenfirstjobs.com/" }
+      ],
+      "proprietaryNotice": "Proprietary Platform • Web & Mobile Production",
+      "featured": true,
+      "paperNote": "Google Play, App Store & Live Portal",
+      "aspectColor": "#E5D4C0"
+    },
+    {
+      "id": "proj-nutracoin",
+      "title": "NutraCoin",
+      "tagline": "Live Digital Asset Mobile Application | React Native",
+      "category": "Mobile App",
+      "description": "Developed a digital asset mobile application providing a non-custodial wallet experience tailored for a specific user group, available live on both Google Play and App Store.",
+      "highlights": [
+        "Non-custodial cryptocurrency / digital asset wallet experience",
+        "Secure key storage and biometrics authentication",
+        "Live production apps on Google Play & App Store"
+      ],
+      "technologies": ["React Native", "Digital Assets", "Wallet Architecture", "Security"],
+      "appLinks": [
+        { "label": "Google Play", "platform": "playstore", "url": "https://play.google.com/store/apps/details?id=com.nutracoin" },
+        { "label": "App Store", "platform": "appstore", "url": "https://apps.apple.com/us/app/nutracoin/id6782789686" }
+      ],
+      "proprietaryNotice": "Proprietary Wallet Architecture • Live on Stores",
+      "featured": false,
+      "paperNote": "Google Play & App Store",
+      "aspectColor": "#D5E0EA"
+    },
+    {
+      "id": "proj-sanad",
+      "title": "Sanad Roadside Assistance",
+      "tagline": "Sanad Link & Sanad Link Ops | React Native • Location Tracking • Stripe",
+      "category": "Mobile App",
+      "description": "Developed customer and driver operations React Native applications enabling users to request real-time roadside assistance with in-app payments. Integrated live location tracking, native splash screen handling, and an Over-The-Air (OTA) update workflow using GitHub with silent push notifications and modal confirmations.",
+      "highlights": [
+        "Customer app (Sanad Link) & driver operations app (Sanad Link Ops)",
+        "Real-time GPS location tracking and Stripe in-app payment processing",
+        "Over-The-Air (OTA) update workflows via GitHub with silent push notifications"
+      ],
+      "technologies": ["React Native", "Location Tracking", "Stripe", "OTA Updates", "Push Notifications"],
+      "proprietaryNotice": "In Progress • Customer & Driver Operation Apps",
+      "featured": false,
+      "paperNote": "Sanad Link & Ops with Stripe",
+      "aspectColor": "#E2E5CB"
+    },
+    {
+      "id": "proj-bouteek",
+      "title": "Bouteek Multi-Service Platform",
+      "tagline": "Backend Microservices | Node.js • Express.js • Turborepo • PostgreSQL",
+      "category": "Backend",
+      "description": "Contributed exclusively to the backend development of an ongoing multi-service platform encompassing an admin panel, vendor panel, user app, and website. Developed and debugged REST APIs within an established Turborepo-based monorepo architecture utilizing multiple microservices running under separate PM2 processes.",
+      "highlights": [
+        "Turborepo monorepo architecture orchestrating multiple microservices",
+        "Microservices management using PM2 process manager",
+        "Maintained PostgreSQL-backed services utilizing pgAdmin 4 for query optimization"
+      ],
+      "technologies": ["Node.js", "Express.js", "Turborepo", "PostgreSQL", "Microservices", "PM2"],
+      "proprietaryNotice": "In Progress • Multi-Service Monorepo & Microservices",
+      "featured": false,
+      "paperNote": "Microservices under PM2 & Turborepo",
+      "aspectColor": "#DFD3C3"
+    },
+    {
+      "id": "proj-yotman",
+      "title": "Yotman",
+      "tagline": "Specialist Platform & Python Backend | React.js • Python • Django",
+      "category": "Full Stack",
+      "description": "Worked on the specialist website for this project and provided support for the Python backend, including development, maintenance, and issue resolution.",
+      "highlights": [
+        "Specialist web portal built with responsive React.js components",
+        "Python and Django backend support, maintenance, and API optimizations",
+        "Cross-functional issue resolution ensuring reliable frontend-backend communication"
+      ],
+      "technologies": ["React.js", "Python", "Django", "REST APIs", "Backend Maintenance"],
+      "proprietaryNotice": "In Progress • Specialist Web & Python Architecture",
+      "featured": false,
+      "paperNote": "Python & Django Backend Support",
+      "aspectColor": "#EAE2D0"
+    },
+    {
+      "id": "proj-anemomylos",
+      "title": "Anemomylos Travel",
+      "tagline": "Tour Guide Booking Platform | Next.js • React.js • SSR",
+      "category": "Web & SSR",
+      "description": "Developed a tour guide booking platform with a React-based admin panel and a public Next.js website. Implemented dynamic date-range pricing along with fixed-date pricing options, Server-Side Rendering (SSR) for public listings, Open Graph metadata, and JSON-LD schemas.",
+      "highlights": [
+        "Dynamic date-range and fixed-date pricing engine",
+        "React-based administrative booking panel",
+        "Server-Side Rendering (SSR) with dynamic Open Graph & JSON-LD schemas"
+      ],
+      "technologies": ["Next.js", "React.js", "SSR", "SEO", "JSON-LD", "Pricing Engine"],
+      "proprietaryNotice": "Deployment Stage • Tour Guide Booking Platform",
+      "featured": false,
+      "paperNote": "Deployment Stage",
+      "aspectColor": "#EAD8B7"
+    },
+    {
+      "id": "proj-gogreek",
+      "title": "GoGreek Website",
+      "tagline": "Interactive Custom Yogurt Ordering | Next.js • SSR • Framer Motion",
+      "category": "Web & SSR",
+      "description": "Built an interactive yogurt ordering website featuring a custom yogurt creation flow where users select custom flavors and toppings. Utilized Framer Motion to visualize live customization updates on the interactive cup UI while maintaining full Server-Side Rendering across public listings.",
+      "highlights": [
+        "Interactive cup UI with live customization updates",
+        "Rich motion animations via Framer Motion",
+        "Server-Side Rendering (SSR) across public listings"
+      ],
+      "technologies": ["Next.js", "React.js", "SSR", "Framer Motion", "Tailwind CSS"],
+      "proprietaryNotice": "In Progress • Interactive Ordering Experience",
+      "featured": false,
+      "paperNote": "Framer Motion Cup Customizer",
+      "aspectColor": "#D9E3D8"
+    },
+    {
+      "id": "proj-whizzo",
+      "title": "Whizzo AI",
+      "tagline": "AI Presentation Generator & Canvas Tools | React.js • Fabric.js",
+      "category": "AI & Tools",
+      "description": "Developed a React.js web application and admin panel with AI features for generating presentations from prompts and editing content prior to download. Implemented document tools for removing pages from PDFs and converting file formats, alongside a canvas-based note-taking section using Fabric.js for text and image placement.",
+      "highlights": [
+        "AI presentation generation from natural language prompts",
+        "Canvas-based editing and note-taking powered by Fabric.js",
+        "Client-side PDF manipulation and file format conversion utilities"
+      ],
+      "technologies": ["React.js", "AI Workflows", "Fabric.js", "Canvas", "PDF Tools"],
+      "proprietaryNotice": "Completed (Client Deployment on Hold) • AI Workflows",
+      "featured": false,
+      "paperNote": "Canvas Tools & AI Prompts",
+      "aspectColor": "#E5D4C0"
+    },
+    {
+      "id": "proj-ginaex",
+      "title": "Gina Ex",
+      "tagline": "Peer-to-Peer Logistics Admin Panel | React.js • MUI DataGrid",
+      "category": "Web & SSR",
+      "description": "Developed an administrative panel for Gina Ex, a platform enabling traveling users to transport parcels for other users for a fee. Implemented Material UI and MUI DataGrid for high-performance handling, sorting, and filtering of structured platform tables.",
+      "highlights": [
+        "MUI DataGrid optimization for sorting and filtering complex parcel tables",
+        "Comprehensive logistics administration and traveler verification",
+        "High-performance handling of high-volume delivery datasets"
+      ],
+      "technologies": ["React.js", "Material UI", "MUI DataGrid", "Logistics Architecture"],
+      "proprietaryNotice": "Live Administrative Logistics Platform",
+      "featured": false,
+      "paperNote": "Live MUI DataGrid Admin",
+      "aspectColor": "#D5E0EA"
+    },
+    {
+      "id": "proj-lifefit",
+      "title": "Life Fit",
+      "tagline": "Fitness & Nutrition Admin Dashboard | React.js • REST APIs",
+      "category": "Web & SSR",
+      "description": "Built an administrative dashboard for Life Fit, a platform providing users with fitness resources such as calorie counters and diet plans. Engineered reusable UI components and integrated administrative REST APIs to manage nutrition programs and user tracking features.",
+      "highlights": [
+        "Engineered reusable UI component library for health metrics",
+        "Integrated administrative REST APIs for diet plans & calorie counters",
+        "Intuitive nutrition program management and user progress tracking"
+      ],
+      "technologies": ["React.js", "REST APIs", "Dashboard Architecture", "Data Tracking"],
+      "proprietaryNotice": "Live Administrative Dashboard",
+      "featured": false,
+      "paperNote": "Live Nutrition & Calorie Dashboard",
+      "aspectColor": "#E5D4C0"
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "institution": "Panjab University, Sector 14",
+      "degree": "Master of Computer Applications (MCA)",
+      "field": "Computer Applications & Software Engineering",
+      "period": "2022 - 2024",
+      "location": "Chandigarh, India",
+      "gpa": "80%",
+      "honors": ["First Division with Distinction (80%)"],
+      "keyCourses": [
+        "Advanced Data Structures & Algorithms",
+        "Software Engineering & Architecture",
+        "Database Management Systems (DBMS)",
+        "Web Technologies & Distributed Computing",
+        "Object-Oriented Programming"
+      ],
+      "skillsAcquired": [
+        "Advanced Algorithms",
+        "Distributed Computing",
+        "Relational & NoSQL Databases",
+        "System Design"
+      ],
+      "paperColor": "#FBF8F1"
+    },
+    {
+      "id": "edu-2",
+      "institution": "DAV College, Sector 10",
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "field": "Computer Applications",
+      "period": "2019 - 2021",
+      "location": "Chandigarh, India",
+      "gpa": "80%",
+      "honors": ["First Division with Distinction (80%)"],
+      "keyCourses": [
+        "Computer Programming & C++ / Java",
+        "Operating Systems",
+        "Computer Networks",
+        "Web Application Development"
+      ],
+      "skillsAcquired": [
+        "Core Computer Science",
+        "Network Protocols",
+        "Full-Stack Web Development",
+        "Software Development Lifecycle"
+      ],
+      "paperColor": "#F5EFE6"
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "role": "Full-Stack Developer",
+      "company": "Apptunix",
+      "location": "Chandigarh, India",
+      "period": "Jan 2024 – Present",
+      "description": "Building production-grade mobile, web, and backend applications across React Native, Next.js, Node.js, and Express.js.",
+      "bulletPoints": [
+        "Developed production-grade React Native mobile applications and responsive web applications utilizing React.js and Next.js.",
+        "Engineered and integrated robust REST APIs using Node.js and Express.js, seamlessly working across frontend and backend codebases based on project requirements.",
+        "Contributed to the development of SaaS and multi-tenant application architectures, as well as microservices-based Node.js backends within Turborepo and monorepo environments.",
+        "Configured mobile deployment workflows, implementing Android Flavors, iOS Schemes, and Over-The-Air (OTA) updates for React Native applications.",
+        "Implemented Server-Side Rendering (SSR), technical SEO, metadata, and JSON-LD structured data in Next.js applications to enhance discoverability.",
+        "Integrated diverse third-party services, including authentication providers (Google, LinkedIn), payment gateways (Stripe), mapping services, and tracking platforms.",
+        "Maintained existing production applications utilizing PostgreSQL and MongoDB, utilizing pgAdmin 4 to debug and resolve complex production issues.",
+        "Collaborated directly with UI/UX designers, QA engineers, and cross-functional teams; participated in technical architecture discussions and mentored junior developers.",
+        "Communicated requirements and technical implementations effectively with clients."
+      ],
+      "technologies": [
+        "React Native",
+        "Next.js",
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "Turborepo",
+        "PostgreSQL",
+        "MongoDB",
+        "Stripe",
+        "AWS"
+      ]
+    }
+  ],
+  "skillCategories": [
+    {
+      "category": "Core Technical Stack & Engineering Competencies",
+      "description": "Production proficiencies across frontend, mobile, server architectures, databases, and language runtimes.",
+      "noteColor": "sage",
+      "skills": [
+        { "name": "React & React JS", "proficiency": 98, "level": "Full Expert" },
+        { "name": "React Native", "proficiency": 98, "level": "Full Expert" },
+        { "name": "Next JS", "proficiency": 96, "level": "Full Expert" },
+        { "name": "Expo", "proficiency": 93, "level": "Full Expert" },
+        { "name": "TypeScript", "proficiency": 92, "level": "Expert" },
+        { "name": "SSR", "proficiency": 91, "level": "Expert" },
+        { "name": "Backend Architecture & RESTful API", "proficiency": 84, "level": "Advanced" },
+        { "name": "Node JS & Express JS", "proficiency": 86, "level": "Advanced" },
+        { "name": "Postgres & MongoDB", "proficiency": 83, "level": "Advanced" },
+        { "name": "Python & Django", "proficiency": 78, "level": "Proficient" }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "author": "Apptunix Engineering Team",
+      "role": "Technical Lead",
+      "company": "Apptunix",
+      "quote": "Mohit is an exceptional full-stack problem solver. From configuring complex Android Flavors and iOS Schemes to engineering clean microservices, his deliveries are always robust and timely.",
+      "washiColor": "#E2D3B8",
+      "rotation": -1.2
+    },
+    {
+      "id": "test-2",
+      "author": "Product Operations",
+      "role": "SaaS Platform Manager",
+      "company": "MindBase",
+      "quote": "His implementation of multi-tenant build architectures and parent-student onboarding gave our platform the stability it needed to scale seamlessly across app stores.",
+      "washiColor": "#C9D6C4",
+      "rotation": 1.4
+    },
+    {
+      "id": "test-3",
+      "author": "Open Source Community",
+      "role": "React Native Developers",
+      "company": "npm Ecosystem",
+      "quote": "rn-snappy-toast is slick, fast, and completely zero-dependency. Mohit's attention to developer ergonomics and clean gesture animations is evident in every release.",
+      "washiColor": "#D9CBD5",
+      "rotation": -0.7
+    }
+  ],
+  "contact": {
+    "title": "Send a Message or Dispatch",
+    "subtitle": "Looking for a full-stack engineer who delivers production-grade mobile apps, scalable microservices, and high-performance web platforms? Let's connect.",
+    "responseTime": "Direct reply via email or phone (+91 7850980009)",
+    "preferredTopics": [
+      "Full-stack web & React Native mobile applications",
+      "Multi-tenant SaaS & microservices architectures",
+      "Next.js SSR, dynamic SEO & performance optimization",
+      "Open-source collaborations & technical leadership"
+    ],
+    "autoReplyTemplate": "Hello,\n\nThank you for reaching out! Your message has been received by Mohit. I will get back to you shortly.\n\nBest regards,\nMohit • Full-Stack Developer\nmohitgujjar2121@gmail.com | +91 7850980009"
+  }
+}
