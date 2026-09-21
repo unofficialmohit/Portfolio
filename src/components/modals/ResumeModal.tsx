@@ -30,7 +30,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-4 md:p-6 overflow-hidden">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -45,10 +45,10 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
           initial={{ opacity: 0, scale: 0.96, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 15 }}
-          className="relative w-full max-w-full sm:max-w-4xl h-[94vh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden z-10 box-border"
+          className="relative w-full max-w-full sm:max-w-4xl h-[90vh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden z-10 box-border"
         >
           {/* Header Bar */}
-          <div className="w-full max-w-full flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3.5 border-b border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-[#1A202C]/95 backdrop-blur-md shrink-0 gap-2 box-border">
+          <div className="w-full max-w-full flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3.5 border-b border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-[#1A202C]/95 backdrop-blur-md shrink-0 gap-2 box-border relative z-20">
             {/* Left Title & Info */}
             <div className="flex items-center gap-2 min-w-0 flex-1 overflow-hidden">
               <div className="p-1.5 sm:p-2 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400 shrink-0">
@@ -101,11 +101,11 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
               <button
                 onClick={onClose}
                 id="resume-modal-close-btn"
-                className="p-1.5 sm:p-2 rounded-xl bg-stone-200/80 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-100 transition-colors cursor-pointer shrink-0"
+                className="p-2 rounded-xl bg-stone-200/90 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 transition-colors cursor-pointer shrink-0 shadow-xs flex items-center justify-center"
                 aria-label="Close modal"
                 title="Close modal"
               >
-                <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                <X className="w-5 h-5 text-stone-900 dark:text-stone-100" />
               </button>
             </div>
           </div>
