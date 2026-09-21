@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Download, FileText, ExternalLink } from "lucide-react";
 import { useBodyScrollLock } from "../../hooks/useBodyScrollLock";
@@ -15,11 +15,22 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
   // Lock background scroll when modal is open
   useBodyScrollLock(isOpen);
 
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 overflow-hidden">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -34,44 +45,50 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
           initial={{ opacity: 0, scale: 0.96, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 15 }}
-          className="relative w-full max-w-4xl h-[100dvh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border-0 sm:border border-stone-300 dark:border-stone-700 rounded-none sm:rounded-2xl shadow-2xl overflow-hidden z-10"
+          className="relative w-full max-w-full sm:max-w-4xl h-[94vh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden z-10 box-border"
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between px-3.5 sm:px-5 py-2.5 sm:py-3.5 border-b border-stone-200 dark:border-stone-800 bg-white/90 dark:bg-[#1A202C]/90 backdrop-blur-md shrink-0">
-            <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+          <div className="w-full max-w-full flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3.5 border-b border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-[#1A202C]/95 backdrop-blur-md shrink-0 gap-2 box-border">
+            {/* Left Title & Info */}
+            <div className="flex items-center gap-2 min-w-0 flex-1 overflow-hidden">
               <div className="p-1.5 sm:p-2 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400 shrink-0">
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <div className="min-w-0">
-                <h3 className="font-display font-bold text-sm sm:text-lg text-stone-900 dark:text-stone-100 flex items-center gap-1.5 sm:gap-2 leading-tight">
-                  <span className="truncate">MOHIT — Resume</span>
-                  <span className="text-[10px] sm:text-[11px] font-mono px-1.5 sm:px-2 py-0.5 rounded-full bg-stone-200/80 dark:bg-stone-800 text-stone-700 dark:text-stone-300 shrink-0">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <h3 className="font-display font-bold text-sm sm:text-base text-stone-900 dark:text-stone-100 truncate">
+                    Mohit — Resume
+                  </h3>
+                  <span className="hidden sm:inline text-xs text-stone-500 dark:text-stone-400 shrink-0">
+                    • Official
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] font-mono px-1.5 py-0.5 rounded-full bg-stone-200/80 dark:bg-stone-800 text-stone-700 dark:text-stone-300 shrink-0">
                     2 Pages
                   </span>
-                </h3>
-                <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 truncate hidden xs:block">
-                  Complete Official Resume Document
-                </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            {/* Right Action Buttons */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              {/* External Raw PDF (Desktop) */}
               <a
                 href="/Mohit_Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="p-1.5 sm:p-2 rounded-xl text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                className="hidden sm:flex p-2 rounded-xl text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer items-center justify-center"
                 title="Open PDF in new tab"
                 aria-label="Open PDF in new tab"
               >
-                <ExternalLink className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                <ExternalLink className="w-4 h-4" />
               </a>
 
+              {/* Download PDF Button */}
               <a
                 href="/Mohit_Resume.pdf"
                 download="Mohit_Resume.pdf"
                 id="resume-modal-download-btn"
-                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all cursor-pointer shrink-0"
                 title="Download Resume PDF"
               >
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -80,21 +97,23 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
                 </span>
               </a>
 
+              {/* Close Button - Prominently visible and styled */}
               <button
                 onClick={onClose}
                 id="resume-modal-close-btn"
-                className="p-1.5 sm:p-2 rounded-xl text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 rounded-xl bg-stone-200/80 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-100 transition-colors cursor-pointer shrink-0"
                 aria-label="Close modal"
+                title="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
 
           {/* Sub-bar with Page Indicators & Quick Jump */}
-          <div className="flex items-center justify-between px-3.5 sm:px-5 py-1.5 bg-stone-100/90 dark:bg-[#161a22]/90 border-b border-stone-200 dark:border-stone-800 text-[11px] text-stone-600 dark:text-stone-400 shrink-0">
-            <div className="flex items-center gap-1.5">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 dark:text-stone-500">
+          <div className="w-full max-w-full flex items-center justify-between px-3 sm:px-5 py-1.5 bg-stone-100/90 dark:bg-[#161a22]/90 border-b border-stone-200 dark:border-stone-800 text-[11px] text-stone-600 dark:text-stone-400 shrink-0 box-border">
+            <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+              <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 dark:text-stone-500 shrink-0">
                 Jump:
               </span>
               <button
@@ -103,34 +122,42 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
                     .getElementById("resume-page-1")
                     ?.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
-                className="px-2 py-0.5 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 font-medium transition-colors cursor-pointer"
+                className="px-2 py-0.5 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 font-medium transition-colors cursor-pointer shrink-0"
               >
                 Page 1
               </button>
-              <span className="text-stone-300 dark:text-stone-700">•</span>
+              <span className="text-stone-300 dark:text-stone-700 shrink-0">•</span>
               <button
                 onClick={() =>
                   document
                     .getElementById("resume-page-2")
                     ?.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
-                className="px-2 py-0.5 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 font-medium transition-colors cursor-pointer"
+                className="px-2 py-0.5 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 font-medium transition-colors cursor-pointer shrink-0"
               >
                 Page 2
               </button>
             </div>
-            <div className="text-[10.5px] font-mono text-stone-500 dark:text-stone-400">
-              <span className="hidden sm:inline">A4 Standard Format • </span>
-              <span>Updated 2026</span>
+            <div className="flex items-center gap-2 text-[10.5px] font-mono text-stone-500 dark:text-stone-400 shrink-0">
+              <a
+                href="/Mohit_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 text-amber-700 dark:text-amber-400 hover:underline"
+                title="Open Raw PDF in new tab"
+              >
+                <ExternalLink className="w-3 h-3" />
+                <span>Raw PDF</span>
+              </a>
             </div>
           </div>
 
           {/* Printable & Scrollable 2-Page Resume Sheet View */}
-          <div className="flex-1 overflow-y-auto overscroll-contain p-2.5 sm:p-6 md:p-8 bg-stone-200/70 dark:bg-stone-950/60 space-y-4 sm:space-y-6">
+          <div className="w-full max-w-full flex-1 overflow-y-auto overscroll-contain p-2 sm:p-6 md:p-8 bg-stone-200/70 dark:bg-stone-950/60 space-y-4 sm:space-y-6 box-border">
             {/* ================= PAGE 1 ================= */}
             <div
               id="resume-page-1"
-              className="max-w-3xl mx-auto p-4 sm:p-8 md:p-9 bg-white text-stone-900 rounded-lg sm:rounded-xl shadow-md border border-stone-200 font-sans text-xs leading-relaxed relative print:shadow-none print:border-none print:p-0 print:m-0"
+              className="w-full max-w-full sm:max-w-3xl mx-auto p-3.5 sm:p-8 md:p-9 bg-white text-stone-900 rounded-xl shadow-md border border-stone-200 font-sans text-xs leading-relaxed relative print:shadow-none print:border-none print:p-0 print:m-0 overflow-hidden box-border"
             >
               {/* Page Number Flag */}
               <div className="absolute top-3 right-3 sm:top-4 sm:right-6 text-[10px] font-mono text-stone-400 select-none">
@@ -408,7 +435,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
             {/* ================= PAGE 2 ================= */}
             <div
               id="resume-page-2"
-              className="max-w-3xl mx-auto p-4 sm:p-8 md:p-9 bg-white text-stone-900 rounded-lg sm:rounded-xl shadow-md border border-stone-200 font-sans text-xs leading-relaxed relative print:shadow-none print:border-none print:p-0 print:m-0"
+              className="w-full max-w-full sm:max-w-3xl mx-auto p-3.5 sm:p-8 md:p-9 bg-white text-stone-900 rounded-xl shadow-md border border-stone-200 font-sans text-xs leading-relaxed relative print:shadow-none print:border-none print:p-0 print:m-0 overflow-hidden box-border"
             >
               {/* Page Number Flag */}
               <div className="absolute top-3 right-3 sm:top-4 sm:right-6 text-[10px] font-mono text-stone-400 select-none">
