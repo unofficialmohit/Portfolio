@@ -176,7 +176,7 @@ export default function App() {
       />
 
       {/* Floating Scroll to Top Button */}
-      <ScrollToTopButton />
+      <ScrollToTopButton hide={isResumeModalOpen || isJsonModalOpen} />
 
       {/* Global JSON Data Live Editor Modal (opened via Ctrl+Shift+E shortcut) */}
       <JsonEditorModal
