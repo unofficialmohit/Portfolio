@@ -8,16 +8,28 @@ interface ScrollToTopButtonProps {
 
 export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ hide = false }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300);
     };
 
+    const checkBodyLock = () => {
+      setIsLocked(document.body.style.overflow === 'hidden');
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
+    checkBodyLock();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new MutationObserver(checkBodyLock);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -26,7 +38,7 @@ export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ hide = fal
 
   return (
     <AnimatePresence>
-      {isVisible && !hide && (
+      {isVisible && !hide && !isLocked && (
         <motion.button
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.7, y: 15 }}

@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Github,
@@ -26,6 +27,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
 
   // Lock background scroll when project modal is open
   useBodyScrollLock(activeProjectModal !== null);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveProjectModal(null);
+    };
+    if (activeProjectModal) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeProjectModal]);
 
   const categories = useMemo(() => {
     return ['All', ...Array.from(new Set(projects.map((p) => p.category)))];
@@ -286,139 +298,154 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
           </div>
         )}
 
-        {/* Project Modal (Blueprint Inspector) */}
-        <AnimatePresence>
-          {activeProjectModal && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#2C2419]/60 dark:bg-black/75 backdrop-blur-xs">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.94, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.94, y: 12 }}
-                className="relative max-w-2xl w-full p-6 sm:p-8 rounded-2xl bg-[#FFFDF9] dark:bg-[#1A212B] border border-[#DFCDB5] dark:border-[#2C384A] paper-shadow-lift max-h-[90vh] overflow-y-auto"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setActiveProjectModal(null)}
-                  className="absolute top-5 right-5 p-2 rounded-full bg-[#F5ECE0] dark:bg-[#252E3C] text-[#5C4A35] dark:text-[#A89885] hover:text-[#2C2419] dark:hover:text-[#E8DFD1] transition-colors cursor-pointer"
+        {/* Project Modal (Blueprint Inspector) - Portaled directly to document.body */}
+        {typeof document !== 'undefined' &&
+          createPortal(
+            <AnimatePresence>
+              {activeProjectModal && (
+                <div
+                  className="fixed inset-0 flex items-center justify-center p-3 sm:p-6 bg-[#2C2419]/60 dark:bg-black/80 backdrop-blur-xs"
+                  style={{ zIndex: 999999 }}
                 >
-                  <X className="w-4 h-4" />
-                </button>
-
-                {/* Top washi tape */}
-                <div className="w-32 h-5 washi-tape rounded-xs mx-auto -mt-3 mb-4" />
-
-                <span className="text-xs font-mono uppercase tracking-widest text-[#A86632] dark:text-[#E59560] bg-[#F5ECDC] dark:bg-[#252E3B] px-2.5 py-1 rounded">
-                  {activeProjectModal.category}
-                </span>
-
-                <h3 className="font-display text-3xl font-bold text-[#2C2419] dark:text-[#E8DFD1] mt-3 mb-1">
-                  {activeProjectModal.title}
-                </h3>
-                <p className="text-base text-[#7A644D] dark:text-[#A89885] font-medium mb-4">
-                  {activeProjectModal.tagline}
-                </p>
-
-                <p className="text-sm text-[#4E4132] dark:text-[#C4B7A6] leading-relaxed mb-6">
-                  {activeProjectModal.description}
-                </p>
-
-                {/* All Highlights */}
-                <div className="mb-6">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#6B5A46] dark:text-[#8E9CAE] mb-2.5">
-                    Architectural Specifications & Deliverables:
-                  </h4>
-                  <div className="space-y-2">
-                    {activeProjectModal.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm text-[#3E3326] dark:text-[#D5CAD6]">
-                        <CheckCircle2 className="w-4 h-4 text-[#C7622B] dark:text-[#E59560] shrink-0 mt-0.5" />
-                        <span>{h}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#6B5A46] dark:text-[#8E9CAE] mb-2">
-                    Technologies & Dependencies:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {activeProjectModal.technologies.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 rounded bg-[#F1E8D9] dark:bg-[#252E3C] border border-[#DFD1BE] dark:border-[#354356] text-xs font-mono text-[#4A3B2B] dark:text-[#D5CAD6]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Notice if proprietary */}
-                {activeProjectModal.proprietaryNotice && (
-                  <div className="mb-6 p-3 rounded-xl bg-[#FAF3E8] dark:bg-[#202734] border border-[#E3D4BC] dark:border-[#2C384A] text-xs font-mono text-[#6A5741] dark:text-[#BDB0A0] flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-[#C7622B] dark:text-[#E59560] shrink-0" />
-                    <span>{activeProjectModal.proprietaryNotice}</span>
-                  </div>
-                )}
-
-                {/* Store Links & Actions */}
-                <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#EDE1CF] dark:border-[#252E3D]">
-                  {/* GitHub for rn-snappy-toast */}
-                  {activeProjectModal.githubUrl && (
-                    <a
-                      href={activeProjectModal.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-5 py-2.5 rounded-xl bg-[#2C2419] dark:bg-[#E59560] text-[#FFFDF9] dark:text-[#13161C] text-xs sm:text-sm font-semibold paper-shadow-sm hover:paper-shadow-md transition-all flex items-center gap-2"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>Inspect Repository</span>
-                    </a>
-                  )}
-
-                  {/* npm link */}
-                  {activeProjectModal.npmUrl && (
-                    <a
-                      href={activeProjectModal.npmUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-5 py-2.5 rounded-xl bg-[#FAF3E8] dark:bg-[#252E3C] text-[#C7622B] dark:text-[#E59560] text-xs sm:text-sm font-semibold border border-[#DFCDB2] dark:border-[#354356] hover:bg-[#EDE1CE] dark:hover:bg-[#2C3848] transition-all flex items-center gap-2"
-                    >
-                      <Package className="w-4 h-4" />
-                      <span>View on npm</span>
-                    </a>
-                  )}
-
-                  {/* App Links (Google Play / App Store) */}
-                  {activeProjectModal.appLinks?.map((link, aIdx) => (
-                    <a
-                      key={aIdx}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-2 rounded-xl bg-[#FFFDF9] dark:bg-[#202734] text-[#3E3121] dark:text-[#E8DFD1] text-xs sm:text-sm font-medium border border-[#DFCDB2] dark:border-[#354356] hover:border-[#C7622B] dark:hover:border-[#E59560] transition-all flex items-center gap-2"
-                    >
-                      {link.platform === 'web' ? (
-                        <Globe className="w-3.5 h-3.5 text-[#C7622B] dark:text-[#E59560]" />
-                      ) : (
-                        <Smartphone className="w-3.5 h-3.5 text-[#C7622B] dark:text-[#E59560]" />
-                      )}
-                      <span>{link.label}</span>
-                    </a>
-                  ))}
-
-                  <button
+                  {/* Backdrop click to dismiss */}
+                  <div
+                    className="fixed inset-0"
                     onClick={() => setActiveProjectModal(null)}
-                    className="ml-auto text-xs font-medium text-[#7C664F] dark:text-[#A79988] hover:text-[#2C2419] dark:hover:text-[#FFFDF9] cursor-pointer"
+                  />
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.94, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, y: 12 }}
+                    className="relative max-w-2xl w-full p-6 sm:p-8 rounded-2xl bg-[#FFFDF9] dark:bg-[#1A212B] border border-[#DFCDB5] dark:border-[#2C384A] paper-shadow-lift max-h-[88vh] overflow-y-auto"
+                    style={{ zIndex: 1000000 }}
                   >
-                    Close
-                  </button>
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setActiveProjectModal(null)}
+                      aria-label="Close project details"
+                      className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full bg-[#F5ECE0] dark:bg-[#252E3C] text-[#5C4A35] dark:text-[#A89885] hover:text-[#2C2419] dark:hover:text-[#E8DFD1] transition-colors cursor-pointer shadow-xs z-10"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+
+                    {/* Top washi tape */}
+                    <div className="w-32 h-5 washi-tape rounded-xs mx-auto -mt-3 mb-4" />
+
+                    <span className="text-xs font-mono uppercase tracking-widest text-[#A86632] dark:text-[#E59560] bg-[#F5ECDC] dark:bg-[#252E3B] px-2.5 py-1 rounded">
+                      {activeProjectModal.category}
+                    </span>
+
+                    <h3 className="font-display text-3xl font-bold text-[#2C2419] dark:text-[#E8DFD1] mt-3 mb-1">
+                      {activeProjectModal.title}
+                    </h3>
+                    <p className="text-base text-[#7A644D] dark:text-[#A89885] font-medium mb-4">
+                      {activeProjectModal.tagline}
+                    </p>
+
+                    <p className="text-sm text-[#4E4132] dark:text-[#C4B7A6] leading-relaxed mb-6">
+                      {activeProjectModal.description}
+                    </p>
+
+                    {/* All Highlights */}
+                    <div className="mb-6">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#6B5A46] dark:text-[#8E9CAE] mb-2.5">
+                        Architectural Specifications & Deliverables:
+                      </h4>
+                      <div className="space-y-2">
+                        {activeProjectModal.highlights.map((h, i) => (
+                          <div key={i} className="flex items-start gap-2 text-sm text-[#3E3326] dark:text-[#D5CAD6]">
+                            <CheckCircle2 className="w-4 h-4 text-[#C7622B] dark:text-[#E59560] shrink-0 mt-0.5" />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Technologies */}
+                    <div className="mb-6">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#6B5A46] dark:text-[#8E9CAE] mb-2">
+                        Technologies & Dependencies:
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {activeProjectModal.technologies.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2.5 py-1 rounded bg-[#F1E8D9] dark:bg-[#252E3C] border border-[#DFD1BE] dark:border-[#354356] text-xs font-mono text-[#4A3B2B] dark:text-[#D5CAD6]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Notice if proprietary */}
+                    {activeProjectModal.proprietaryNotice && (
+                      <div className="mb-6 p-3 rounded-xl bg-[#FAF3E8] dark:bg-[#202734] border border-[#E3D4BC] dark:border-[#2C384A] text-xs font-mono text-[#6A5741] dark:text-[#BDB0A0] flex items-center gap-2">
+                        <Lock className="w-4 h-4 text-[#C7622B] dark:text-[#E59560] shrink-0" />
+                        <span>{activeProjectModal.proprietaryNotice}</span>
+                      </div>
+                    )}
+
+                    {/* Store Links & Actions */}
+                    <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[#EDE1CF] dark:border-[#252E3D]">
+                      {/* GitHub for rn-snappy-toast */}
+                      {activeProjectModal.githubUrl && (
+                        <a
+                          href={activeProjectModal.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-5 py-2.5 rounded-xl bg-[#2C2419] dark:bg-[#E59560] text-[#FFFDF9] dark:text-[#13161C] text-xs sm:text-sm font-semibold paper-shadow-sm hover:paper-shadow-md transition-all flex items-center gap-2"
+                        >
+                          <Github className="w-4 h-4" />
+                          <span>Inspect Repository</span>
+                        </a>
+                      )}
+
+                      {/* npm link */}
+                      {activeProjectModal.npmUrl && (
+                        <a
+                          href={activeProjectModal.npmUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-5 py-2.5 rounded-xl bg-[#FAF3E8] dark:bg-[#252E3C] text-[#C7622B] dark:text-[#E59560] text-xs sm:text-sm font-semibold border border-[#DFCDB2] dark:border-[#354356] hover:bg-[#EDE1CE] dark:hover:bg-[#2C3848] transition-all flex items-center gap-2"
+                        >
+                          <Package className="w-4 h-4" />
+                          <span>View on npm</span>
+                        </a>
+                      )}
+
+                      {/* App Links (Google Play / App Store) */}
+                      {activeProjectModal.appLinks?.map((link, aIdx) => (
+                        <a
+                          key={aIdx}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-4 py-2 rounded-xl bg-[#FFFDF9] dark:bg-[#202734] text-[#3E3121] dark:text-[#E8DFD1] text-xs sm:text-sm font-medium border border-[#DFCDB2] dark:border-[#354356] hover:border-[#C7622B] dark:hover:border-[#E59560] transition-all flex items-center gap-2"
+                        >
+                          {link.platform === 'web' ? (
+                            <Globe className="w-3.5 h-3.5 text-[#C7622B] dark:text-[#E59560]" />
+                          ) : (
+                            <Smartphone className="w-3.5 h-3.5 text-[#C7622B] dark:text-[#E59560]" />
+                          )}
+                          <span>{link.label}</span>
+                        </a>
+                      ))}
+
+                      <button
+                        onClick={() => setActiveProjectModal(null)}
+                        className="ml-auto text-xs font-medium text-[#7C664F] dark:text-[#A79988] hover:text-[#2C2419] dark:hover:text-[#FFFDF9] cursor-pointer"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            </div>
+              )}
+            </AnimatePresence>,
+            document.body
           )}
-        </AnimatePresence>
       </div>
     </section>
   );

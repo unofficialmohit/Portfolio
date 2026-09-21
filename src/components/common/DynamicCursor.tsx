@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, useSpring, useMotionValue } from 'motion/react';
 
 interface DynamicCursorProps {
@@ -76,8 +77,11 @@ export const DynamicCursor: React.FC<DynamicCursorProps> = ({ theme }) => {
 
   const isDark = theme === 'dark';
 
-  return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+  return createPortal(
+    <div
+      className="pointer-events-none fixed inset-0 overflow-hidden"
+      style={{ zIndex: 99999999 }}
+    >
       {/* Trailing Smooth Follower Ring */}
       <motion.div
         style={{
@@ -182,6 +186,7 @@ export const DynamicCursor: React.FC<DynamicCursorProps> = ({ theme }) => {
           </svg>
         )}
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 };

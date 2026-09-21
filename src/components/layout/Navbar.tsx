@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
 interface NavbarProps {
@@ -21,6 +21,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,8 +70,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           : 'bg-[#F8F5EE]/80 dark:bg-[#13171F]/80 backdrop-blur-sm border-b border-transparent'
       }`}
     >
-      {/* Top washi tape deco on nav */}
-      <div className="w-full h-1 bg-gradient-to-r from-[#D97706]/50 via-[#8B7355]/40 to-[#9CA98D]/50 dark:from-[#D97706]/30 dark:via-[#4B5563]/40 dark:to-[#3B82F6]/30" />
+      {/* Dynamic Scroll Progress Bar */}
+      <div className="w-full h-1 bg-[#E8DFC8]/40 dark:bg-[#242E3D]/40 overflow-hidden relative">
+        <motion.div
+          style={{ scaleX, transformOrigin: '0%' }}
+          className="h-full w-full bg-gradient-to-r from-[#D97706] via-[#C7622B] to-[#E59560] dark:from-[#D97706] dark:via-[#E59560] dark:to-[#60A5FA]"
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
