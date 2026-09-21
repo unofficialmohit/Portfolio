@@ -53,8 +53,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <motion.div
               initial={{ opacity: 0, rotate: -2 }}
               whileInView={{ opacity: 1, rotate: -1.5 }}
-              viewport={{ once: true }}
-              className="relative p-5 pb-7 bg-[#FFFDF9] dark:bg-[#1C222C] rounded-sm border border-[#DFCEB5] dark:border-[#2C384A] paper-shadow-lift max-w-sm w-full"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative p-5 pb-7 bg-[#FFFDF9] dark:bg-[#1C222C] rounded-sm border border-[#DFCEB5] dark:border-[#2C384A] paper-shadow-lift max-w-sm w-full will-change-transform"
+              style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
             >
               {/* Top washi tape */}
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 washi-tape rounded-sm" />
@@ -139,9 +141,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 {quickFacts.map((fact) => (
                   <motion.div
                     key={fact.id}
+                    initial={{ rotate: fact.rotation }}
                     whileHover={{ scale: 1.02, rotate: 0 }}
-                    style={{ transform: `rotate(${fact.rotation}deg)` }}
-                    className={`p-4 rounded-xl border paper-shadow-sm hover:paper-shadow-md transition-all duration-200 relative ${
+                    transition={{ duration: 0.2 }}
+                    className={`p-4 rounded-xl border paper-shadow-sm hover:paper-shadow-md transition-[box-shadow,border-color,background-color] duration-200 relative will-change-transform ${
                       stickyColors[fact.color as keyof typeof stickyColors] || stickyColors.yellow
                     }`}
                   >

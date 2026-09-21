@@ -62,11 +62,12 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ categories }) => {
               key={cat.category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`relative p-6 sm:p-8 md:p-10 rounded-2xl border shadow-sm paper-fold-tr ${
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className={`relative p-6 sm:p-8 md:p-10 rounded-2xl border shadow-sm paper-fold-tr will-change-transform ${
                 noteColorMap[cat.noteColor as keyof typeof noteColorMap] || noteColorMap.sage
               }`}
+              style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
             >
               {/* Pinned push pin effect at top left */}
               <div className="absolute top-5 left-6 w-3.5 h-3.5 rounded-full bg-[#C7622B] dark:bg-[#E59560] shadow-xs border border-white dark:border-black flex items-center justify-center">

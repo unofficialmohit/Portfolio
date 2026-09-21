@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, Mail, CheckCircle2, Copy, Check, ArrowUpRight, ShieldCheck, AlertCircle, X } from 'lucide-react';
+import { Send, Mail, CheckCircle2, Copy, Check, ArrowUpRight, AlertCircle, X } from 'lucide-react';
 import { SocialLink } from '../../types';
 import { sendCorrespondence, EmailSendResult } from '../../services/emailService';
 
@@ -294,7 +294,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       {dispatchResult && (
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-[#FAF1E4] dark:bg-[#1E2530] border border-[#E0D0BB] dark:border-[#2C384A] text-[#8C582B] dark:text-[#E59560]">
                           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                          Delivered via EmailJS to {targetRecipient}
+                          Delivered directly to {targetRecipient}
                         </div>
                       )}
                     </div>
@@ -350,12 +350,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         <p className="text-xs text-[#7A6753] dark:text-[#A89885] mt-0.5">
                           Directly dispatched to <span className="font-mono font-semibold text-[#C7622B] dark:text-[#E59560]">{targetRecipient}</span>
                         </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded bg-[#F4EDE0] dark:bg-[#202734] border border-[#DFCDB5] dark:border-[#2C384A] text-[#8C582B] dark:text-[#E59560] flex items-center gap-1">
-                          <ShieldCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                          EmailJS Integration
-                        </span>
                       </div>
                     </div>
 

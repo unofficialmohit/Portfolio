@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Mail, Github, Linkedin, Phone } from 'lucide-react';
+import { Mail, Github, Linkedin, Phone } from 'lucide-react';
 
 interface FooterProps {
   name: string;
@@ -14,10 +14,6 @@ export const Footer: React.FC<FooterProps> = ({
   email,
   phone = '+91 7850980009',
 }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="relative bg-[#F4EFE6] dark:bg-[#11141A] border-t border-[#E3D6C1] dark:border-[#252E3D] pt-12 pb-16 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -56,16 +52,6 @@ export const Footer: React.FC<FooterProps> = ({
               <Phone className="w-3.5 h-3.5" />
               <span>{phone}</span>
             </a>
-
-            <span>•</span>
-
-            <button
-              onClick={scrollToTop}
-              className="hover:text-[#C7622B] dark:hover:text-[#E59560] transition-colors flex items-center gap-1.5 cursor-pointer"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-              <span>Back to Top</span>
-            </button>
           </div>
         </div>
 

@@ -146,10 +146,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                whileHover={{ y: -6 }}
-                className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#FFFDF9] dark:bg-[#1B222C] border border-[#E3D5BE] dark:border-[#2C384A] paper-shadow-md hover:paper-shadow-lift transition-all duration-300 paper-fold-tr"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(idx * 0.06, 0.25) }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#FFFDF9] dark:bg-[#1B222C] border border-[#E3D5BE] dark:border-[#2C384A] paper-shadow-md hover:paper-shadow-lift transition-[box-shadow,border-color,background-color] duration-300 paper-fold-tr will-change-transform"
+                style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
                 {/* Washi tape accent on featured projects (positioned with safe margin to prevent clipping) */}
                 {project.featured && (

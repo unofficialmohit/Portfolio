@@ -68,9 +68,10 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
                   key={edu.id}
                   initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="relative"
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(idx * 0.08, 0.25) }}
+                  className="relative will-change-transform"
+                  style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                 >
                   {/* Bookmark marker on timeline line - exactly centered on spine */}
                   <div className="absolute -left-8 sm:-left-10 top-1.5 -translate-x-1/2 w-7 h-7 rounded-full bg-[#FFFDF9] dark:bg-[#1C232E] border-2 border-[#C7622B] dark:border-[#E59560] flex items-center justify-center shadow-xs z-10">
@@ -171,9 +172,10 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
                   key={exp.id}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: eIdx * 0.1 }}
-                  className="p-6 rounded-2xl bg-[#FFFDF9] dark:bg-[#1B222C] border border-[#E3D4BD] dark:border-[#2C384A] paper-shadow-md relative paper-fold-tr"
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(eIdx * 0.08, 0.25) }}
+                  className="p-6 rounded-2xl bg-[#FFFDF9] dark:bg-[#1B222C] border border-[#E3D4BD] dark:border-[#2C384A] paper-shadow-md relative paper-fold-tr will-change-transform"
+                  style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-mono font-bold text-[#A86632] dark:text-[#E59560] bg-[#F7EFE1] dark:bg-[#252E3C] px-2.5 py-0.5 rounded">

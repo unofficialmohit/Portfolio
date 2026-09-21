@@ -12,6 +12,7 @@ import { JsonEditorModal } from './components/modals/JsonEditorModal';
 import { ResumeModal } from './components/modals/ResumeModal';
 import { DynamicCursor } from './components/common/DynamicCursor';
 import { ParallaxTechBackground } from './components/common/ParallaxTechBackground';
+import { ScrollToTopButton } from './components/common/ScrollToTopButton';
 
 export default function App() {
   const {
@@ -173,6 +174,9 @@ export default function App() {
         email={data.personal.email}
         phone={data.personal.phone}
       />
+
+      {/* Floating Scroll to Top Button */}
+      <ScrollToTopButton />
 
       {/* Global JSON Data Live Editor Modal (opened via Ctrl+Shift+E shortcut) */}
       <JsonEditorModal
