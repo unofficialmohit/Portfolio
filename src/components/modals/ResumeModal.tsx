@@ -1,17 +1,16 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, Download, Printer, FileText, ExternalLink } from 'lucide-react';
+import React from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { X, Download, Printer, FileText, ExternalLink } from "lucide-react";
 
 interface ResumeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
-  const handlePrint = () => {
-    window.print();
-  };
-
+export const ResumeModal: React.FC<ResumeModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   if (!isOpen) return null;
 
   return (
@@ -53,15 +52,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </div>
 
             <div className="flex items-center gap-2">
-              <button
-                onClick={handlePrint}
+              <a
+                href="/Mohit_Resume.pdf"
+                download="Mohit_Resume.pdf"
                 id="resume-modal-download-btn"
                 className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all cursor-pointer"
-                title="Print or Save as PDF"
+                title="Download Resume PDF"
               >
                 <Download className="w-4 h-4" />
-                <span>Save / Print PDF</span>
-              </button>
+                <span>Download PDF</span>
+              </a>
 
               <button
                 onClick={onClose}
@@ -76,7 +76,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
           {/* Printable & Scrollable 2-Page Resume Sheet View */}
           <div className="flex-1 overflow-y-auto p-3 sm:p-6 md:p-8 bg-stone-200/70 dark:bg-stone-950/60 space-y-6">
-            
             {/* ================= PAGE 1 ================= */}
             <div
               id="resume-page-1"
@@ -100,15 +99,28 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   <span>•</span>
                   <span>+91 7850980009</span>
                   <span>•</span>
-                  <a href="mailto:mohitgujjar2121@gmail.com" className="text-blue-700 hover:underline font-semibold">
+                  <a
+                    href="mailto:mohitgujjar2121@gmail.com"
+                    className="text-blue-700 hover:underline font-semibold"
+                  >
                     mohitgujjar2121@gmail.com
                   </a>
                   <span>•</span>
-                  <a href="https://github.com" target="_blank" rel="noreferrer" className="text-blue-700 hover:underline font-semibold">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-700 hover:underline font-semibold"
+                  >
                     GitHub
                   </a>
                   <span>•</span>
-                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-blue-700 hover:underline font-semibold">
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-700 hover:underline font-semibold"
+                  >
                     LinkedIn
                   </a>
                 </div>
@@ -120,7 +132,17 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   PROFESSIONAL SUMMARY
                 </h2>
                 <p className="text-[11.5px] text-stone-700 leading-normal text-justify">
-                  Full-Stack Developer with approximately 3 years of professional experience building production-grade mobile, web, and backend applications. Proficient in delivering scalable solutions using React Native, React.js, Next.js, Node.js, and Express.js. Experienced in developing multi-tenant SaaS platforms, microservices architectures, and REST APIs, alongside implementing Server-Side Rendering (SSR), technical SEO, and mobile deployment pipelines. Adept at cross-functional collaboration, third-party integrations, and resolving complex production issues to deliver robust applications.
+                  Full-Stack Developer with approximately 3 years of
+                  professional experience building production-grade mobile, web,
+                  and backend applications. Proficient in delivering scalable
+                  solutions using React Native, React.js, Next.js, Node.js, and
+                  Express.js. Experienced in developing multi-tenant SaaS
+                  platforms, microservices architectures, and REST APIs,
+                  alongside implementing Server-Side Rendering (SSR), technical
+                  SEO, and mobile deployment pipelines. Adept at
+                  cross-functional collaboration, third-party integrations, and
+                  resolving complex production issues to deliver robust
+                  applications.
                 </p>
               </div>
 
@@ -130,14 +152,56 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   TECHNICAL SKILLS
                 </h2>
                 <div className="text-[11.5px] space-y-1 text-stone-800 leading-snug">
-                  <p><span className="font-bold text-stone-950">Languages:</span> JavaScript (ES6+), TypeScript, Python</p>
-                  <p><span className="font-bold text-stone-950">Frontend / Web:</span> React.js, Next.js, Server-Side Rendering (SSR), Dynamic SEO, Metadata, JSON-LD, Structured Data, MUI, MUI DataGrid, Recharts, Framer Motion</p>
-                  <p><span className="font-bold text-stone-950">Mobile Development:</span> React Native, React Native Reanimated, Android Flavors, iOS Schemes, OTA Updates</p>
-                  <p><span className="font-bold text-stone-950">Backend:</span> Node.js, Express.js, NestJS, REST APIs, Microservices Architecture</p>
-                  <p><span className="font-bold text-stone-950">State Management & Forms:</span> Redux Toolkit, RTK Query, Zustand, TanStack Query, React Hook Form, Zod</p>
-                  <p><span className="font-bold text-stone-950">Databases:</span> MongoDB, PostgreSQL, MySQL</p>
-                  <p><span className="font-bold text-stone-950">Architecture & Tools:</span> Turborepo, Monorepo Architecture, Multi-Tenant SaaS, Microservices, Git, PM2, pgAdmin 4</p>
-                  <p><span className="font-bold text-stone-950">Cloud & Integrations:</span> AWS, Firebase, Stripe, Google Maps APIs, Google OAuth, LinkedIn OAuth, Google reCAPTCHA, Google Analytics, Facebook Pixel, LinkedIn Insight Tag</p>
+                  <p>
+                    <span className="font-bold text-stone-950">Languages:</span>{" "}
+                    JavaScript (ES6+), TypeScript, Python
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">
+                      Frontend / Web:
+                    </span>{" "}
+                    React.js, Next.js, Server-Side Rendering (SSR), Dynamic SEO,
+                    Metadata, JSON-LD, Structured Data, MUI, MUI DataGrid,
+                    Recharts, Framer Motion
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">
+                      Mobile Development:
+                    </span>{" "}
+                    React Native, React Native Reanimated, Android Flavors, iOS
+                    Schemes, OTA Updates
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">Backend:</span>{" "}
+                    Node.js, Express.js, NestJS, REST APIs, Microservices
+                    Architecture
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">
+                      State Management & Forms:
+                    </span>{" "}
+                    Redux Toolkit, RTK Query, Zustand, TanStack Query, React
+                    Hook Form, Zod
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">Databases:</span>{" "}
+                    MongoDB, PostgreSQL, MySQL
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">
+                      Architecture & Tools:
+                    </span>{" "}
+                    Turborepo, Monorepo Architecture, Multi-Tenant SaaS,
+                    Microservices, Git, PM2, pgAdmin 4
+                  </p>
+                  <p>
+                    <span className="font-bold text-stone-950">
+                      Cloud & Integrations:
+                    </span>{" "}
+                    AWS, Firebase, Stripe, Google Maps APIs, Google OAuth,
+                    LinkedIn OAuth, Google reCAPTCHA, Google Analytics, Facebook
+                    Pixel, LinkedIn Insight Tag
+                  </p>
                 </div>
               </div>
 
@@ -148,19 +212,60 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 </h2>
                 <div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-stone-950 text-[12px]">Apptunix — Full-Stack Developer</span>
-                    <span className="font-mono text-stone-600 text-[11px]">Jan 2024 – Present</span>
+                    <span className="font-bold text-stone-950 text-[12px]">
+                      Apptunix — Full-Stack Developer
+                    </span>
+                    <span className="font-mono text-stone-600 text-[11px]">
+                      Jan 2024 – Present
+                    </span>
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed production-grade React Native mobile applications and responsive web applications utilizing React.js and Next.js.</li>
-                    <li>Engineered and integrated robust REST APIs using Node.js and Express.js, seamlessly working across frontend and backend codebases based on project requirements.</li>
-                    <li>Contributed to the development of SaaS and multi-tenant application architectures, as well as microservices-based Node.js backends within Turborepo and monorepo environments.</li>
-                    <li>Configured mobile deployment workflows, implementing Android Flavors, iOS Schemes, and Over-The-Air (OTA) updates for React Native applications.</li>
-                    <li>Implemented Server-Side Rendering (SSR), technical SEO, metadata, and JSON-LD structured data in Next.js applications to enhance discoverability.</li>
-                    <li>Integrated diverse third-party services, including authentication providers (Google, LinkedIn), payment gateways (Stripe), mapping services, and tracking platforms.</li>
-                    <li>Maintained existing production applications utilizing PostgreSQL and MongoDB, utilizing pgAdmin 4 to debug and resolve complex production issues.</li>
-                    <li>Collaborated directly with UI/UX designers, QA engineers, and cross-functional teams; participated in technical architecture discussions and mentored junior developers.</li>
-                    <li>Communicated requirements and technical implementations effectively with clients.</li>
+                    <li>
+                      Developed production-grade React Native mobile
+                      applications and responsive web applications utilizing
+                      React.js and Next.js.
+                    </li>
+                    <li>
+                      Engineered and integrated robust REST APIs using Node.js
+                      and Express.js, seamlessly working across frontend and
+                      backend codebases based on project requirements.
+                    </li>
+                    <li>
+                      Contributed to the development of SaaS and multi-tenant
+                      application architectures, as well as microservices-based
+                      Node.js backends within Turborepo and monorepo
+                      environments.
+                    </li>
+                    <li>
+                      Configured mobile deployment workflows, implementing
+                      Android Flavors, iOS Schemes, and Over-The-Air (OTA)
+                      updates for React Native applications.
+                    </li>
+                    <li>
+                      Implemented Server-Side Rendering (SSR), technical SEO,
+                      metadata, and JSON-LD structured data in Next.js
+                      applications to enhance discoverability.
+                    </li>
+                    <li>
+                      Integrated diverse third-party services, including
+                      authentication providers (Google, LinkedIn), payment
+                      gateways (Stripe), mapping services, and tracking
+                      platforms.
+                    </li>
+                    <li>
+                      Maintained existing production applications utilizing
+                      PostgreSQL and MongoDB, utilizing pgAdmin 4 to debug and
+                      resolve complex production issues.
+                    </li>
+                    <li>
+                      Collaborated directly with UI/UX designers, QA engineers,
+                      and cross-functional teams; participated in technical
+                      architecture discussions and mentored junior developers.
+                    </li>
+                    <li>
+                      Communicated requirements and technical implementations
+                      effectively with clients.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -172,13 +277,30 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 </h2>
                 <div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-stone-950 text-[11.5px]">rn-snappy-toast — Creator & Maintainer | React Native • npm Package</span>
-                    <span className="text-[10px] font-mono text-stone-600">GitHub Repository • npm Package</span>
+                    <span className="font-bold text-stone-950 text-[11.5px]">
+                      rn-snappy-toast — Creator & Maintainer | React Native •
+                      npm Package
+                    </span>
+                    <span className="text-[10px] font-mono text-stone-600">
+                      GitHub Repository • npm Package
+                    </span>
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed and published a lightweight, customizable, zero-dependency toast notification library for React Native.</li>
-                    <li>Implemented dynamic queue handling, swipe-to-dismiss gestures, custom positioning, and smooth animations optimized for modern React Native architecture.</li>
-                    <li>Maintained TypeScript typings, comprehensive documentation, and npm package releases for developer usability.</li>
+                    <li>
+                      Developed and published a lightweight, customizable,
+                      zero-dependency toast notification library for React
+                      Native.
+                    </li>
+                    <li>
+                      Implemented dynamic queue handling, swipe-to-dismiss
+                      gestures, custom positioning, and smooth animations
+                      optimized for modern React Native architecture.
+                    </li>
+                    <li>
+                      Maintained TypeScript typings, comprehensive
+                      documentation, and npm package releases for developer
+                      usability.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -190,16 +312,36 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 </h2>
                 <div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-stone-950 text-[11.5px]">MindBase Apps (Student & Tutor) — Live | React Native • SaaS</span>
+                    <span className="font-bold text-stone-950 text-[11.5px]">
+                      MindBase Apps (Student & Tutor) — Live | React Native •
+                      SaaS
+                    </span>
                   </div>
                   <p className="text-[10px] text-stone-600 font-mono mt-0.5">
-                    Student: Google Play | App Store • Tutor: Google Play | App Store
+                    Student: Google Play | App Store • Tutor: Google Play | App
+                    Store
                   </p>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed a multi-tenant SaaS scheduling platform comprising separate Student and Tutor applications to schedule sessions between students and teachers.</li>
-                    <li>Implemented parent onboarding within the student app, enabling parents to manage children accounts within defined account limits.</li>
-                    <li>Configured advanced mobile build workflows using Android Flavors and iOS Schemes to generate separate tenant-specific binaries from a single codebase.</li>
-                    <li>Resolved lack of browser origins in mobile runtimes by defining custom origin handling managed via environment configurations for dynamic tenant data synchronization.</li>
+                    <li>
+                      Developed a multi-tenant SaaS scheduling platform
+                      comprising separate Student and Tutor applications to
+                      schedule sessions between students and teachers.
+                    </li>
+                    <li>
+                      Implemented parent onboarding within the student app,
+                      enabling parents to manage children accounts within
+                      defined account limits.
+                    </li>
+                    <li>
+                      Configured advanced mobile build workflows using Android
+                      Flavors and iOS Schemes to generate separate
+                      tenant-specific binaries from a single codebase.
+                    </li>
+                    <li>
+                      Resolved lack of browser origins in mobile runtimes by
+                      defining custom origin handling managed via environment
+                      configurations for dynamic tenant data synchronization.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -217,8 +359,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
               {/* Header Mini / Continuation */}
               <div className="border-b border-stone-300 pb-2 mb-3 flex items-center justify-between">
-                <span className="font-bold text-stone-900 uppercase text-[11px]">MOHIT — Full-Stack Developer</span>
-                <span className="text-[10px] font-mono text-stone-500">mohitgujjar2121@gmail.com • +91 7850980009</span>
+                <span className="font-bold text-stone-900 uppercase text-[11px]">
+                  MOHIT — Full-Stack Developer
+                </span>
+                <span className="text-[10px] font-mono text-stone-500">
+                  mohitgujjar2121@gmail.com • +91 7850980009
+                </span>
               </div>
 
               {/* PROJECTS CONTINUED */}
@@ -226,16 +372,33 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 {/* Women First Jobs */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    Women First Jobs — Live | React Native • Next.js • React.js • Dynamic SEO
+                    Women First Jobs — Live | React Native • Next.js • React.js
+                    • Dynamic SEO
                   </div>
                   <p className="text-[10px] text-stone-600 font-mono">
                     Google Play • App Store • Live Website
                   </p>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Delivered a comprehensive job platform featuring an employee-focused mobile app, dual employer/employee website workflows, and an administrative panel.</li>
-                    <li>Implemented dynamic Server-Side Rendering (SSR) across public job listings and dynamic Open Graph metadata on detail pages for rich sharing previews.</li>
-                    <li>Managed URL-based SEO controls through the admin dashboard and implemented JSON-LD structured schemas for enhanced search indexing.</li>
-                    <li>Integrated Google Analytics, Facebook Pixel, LinkedIn Insight Tag, Google reCAPTCHA, Google OAuth (including floated login handling), and LinkedIn login workflows.</li>
+                    <li>
+                      Delivered a comprehensive job platform featuring an
+                      employee-focused mobile app, dual employer/employee
+                      website workflows, and an administrative panel.
+                    </li>
+                    <li>
+                      Implemented dynamic Server-Side Rendering (SSR) across
+                      public job listings and dynamic Open Graph metadata on
+                      detail pages for rich sharing previews.
+                    </li>
+                    <li>
+                      Managed URL-based SEO controls through the admin dashboard
+                      and implemented JSON-LD structured schemas for enhanced
+                      search indexing.
+                    </li>
+                    <li>
+                      Integrated Google Analytics, Facebook Pixel, LinkedIn
+                      Insight Tag, Google reCAPTCHA, Google OAuth (including
+                      floated login handling), and LinkedIn login workflows.
+                    </li>
                   </ul>
                 </div>
 
@@ -248,30 +411,57 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Google Play • App Store
                   </p>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed a digital asset mobile application providing a non-custodial wallet experience tailored for a specific user group.</li>
+                    <li>
+                      Developed a digital asset mobile application providing a
+                      non-custodial wallet experience tailored for a specific
+                      user group.
+                    </li>
                   </ul>
                 </div>
 
                 {/* Sanad Roadside Assistance */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    Sanad Roadside Assistance (Sanad Link & Sanad Link Ops) — In Progress | React Native • Location Tracking • Stripe
+                    Sanad Roadside Assistance (Sanad Link & Sanad Link Ops) — In
+                    Progress | React Native • Location Tracking • Stripe
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed customer and driver operations React Native applications enabling users to request real-time roadside assistance with in-app payments.</li>
-                    <li>Integrated live location tracking, native splash screen handling, and an Over-The-Air (OTA) update workflow using GitHub with silent push notifications and modal confirmations.</li>
+                    <li>
+                      Developed customer and driver operations React Native
+                      applications enabling users to request real-time roadside
+                      assistance with in-app payments.
+                    </li>
+                    <li>
+                      Integrated live location tracking, native splash screen
+                      handling, and an Over-The-Air (OTA) update workflow using
+                      GitHub with silent push notifications and modal
+                      confirmations.
+                    </li>
                   </ul>
                 </div>
 
                 {/* Bouteek */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    Bouteek — In Progress | Node.js • Express.js • Turborepo • PostgreSQL • Microservices
+                    Bouteek — In Progress | Node.js • Express.js • Turborepo •
+                    PostgreSQL • Microservices
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Contributed exclusively to the backend development of an ongoing multi-service platform encompassing an admin panel, vendor panel, user app, and website.</li>
-                    <li>Developed and debugged REST APIs within an established Turborepo-based monorepo architecture utilizing multiple microservices running under separate PM2 processes.</li>
-                    <li>Maintained PostgreSQL-backed services, utilizing pgAdmin 4 to inspect database structures, investigate issues, and resolve backend bugs.</li>
+                    <li>
+                      Contributed exclusively to the backend development of an
+                      ongoing multi-service platform encompassing an admin
+                      panel, vendor panel, user app, and website.
+                    </li>
+                    <li>
+                      Developed and debugged REST APIs within an established
+                      Turborepo-based monorepo architecture utilizing multiple
+                      microservices running under separate PM2 processes.
+                    </li>
+                    <li>
+                      Maintained PostgreSQL-backed services, utilizing pgAdmin 4
+                      to inspect database structures, investigate issues, and
+                      resolve backend bugs.
+                    </li>
                   </ul>
                 </div>
 
@@ -281,40 +471,72 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Yotman — In Progress | React.js • Python • Django
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Worked on the specialist website for this project and provided support for the Python backend, including development, maintenance, and issue resolution.</li>
+                    <li>
+                      Worked on the specialist website for this project and
+                      provided support for the Python backend, including
+                      development, maintenance, and issue resolution.
+                    </li>
                   </ul>
                 </div>
 
                 {/* Anemomylos Travel */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    Anemomylos Travel — Deployment Stage | Next.js • React.js • SSR
+                    Anemomylos Travel — Deployment Stage | Next.js • React.js •
+                    SSR
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed a tour guide booking platform with a React-based admin panel and a public Next.js website.</li>
-                    <li>Implemented dynamic date-range pricing along with fixed-date pricing options, Server-Side Rendering (SSR) for public listings, Open Graph metadata, and JSON-LD schemas.</li>
+                    <li>
+                      Developed a tour guide booking platform with a React-based
+                      admin panel and a public Next.js website.
+                    </li>
+                    <li>
+                      Implemented dynamic date-range pricing along with
+                      fixed-date pricing options, Server-Side Rendering (SSR)
+                      for public listings, Open Graph metadata, and JSON-LD
+                      schemas.
+                    </li>
                   </ul>
                 </div>
 
                 {/* GoGreek Website */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    GoGreek Website — In Progress | Next.js • SSR • Framer Motion
+                    GoGreek Website — In Progress | Next.js • SSR • Framer
+                    Motion
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Built an interactive yogurt ordering website featuring a custom yogurt creation flow where users select custom flavors and toppings.</li>
-                    <li>Utilized Framer Motion to visualize live customization updates on the interactive cup UI while maintaining full Server-Side Rendering across public listings.</li>
+                    <li>
+                      Built an interactive yogurt ordering website featuring a
+                      custom yogurt creation flow where users select custom
+                      flavors and toppings.
+                    </li>
+                    <li>
+                      Utilized Framer Motion to visualize live customization
+                      updates on the interactive cup UI while maintaining full
+                      Server-Side Rendering across public listings.
+                    </li>
                   </ul>
                 </div>
 
                 {/* Whizzo AI */}
                 <div>
                   <div className="font-bold text-stone-950 text-[11.5px]">
-                    Whizzo AI — Completed (Client Deployment on Hold) | React.js • AI Workflows • Fabric.js
+                    Whizzo AI — Completed (Client Deployment on Hold) | React.js
+                    • AI Workflows • Fabric.js
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed a React.js web application and admin panel with AI features for generating presentations from prompts and editing content prior to download.</li>
-                    <li>Implemented document tools for removing pages from PDFs and converting file formats, alongside a canvas-based note-taking section using Fabric.js for text and image placement.</li>
+                    <li>
+                      Developed a React.js web application and admin panel with
+                      AI features for generating presentations from prompts and
+                      editing content prior to download.
+                    </li>
+                    <li>
+                      Implemented document tools for removing pages from PDFs
+                      and converting file formats, alongside a canvas-based
+                      note-taking section using Fabric.js for text and image
+                      placement.
+                    </li>
                   </ul>
                 </div>
 
@@ -324,8 +546,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Gina Ex — Live | React.js • MUI DataGrid
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Developed an administrative panel for Gina Ex, a platform enabling traveling users to transport parcels for other users for a fee.</li>
-                    <li>Implemented Material UI and MUI DataGrid for high-performance handling, sorting, and filtering of structured platform tables.</li>
+                    <li>
+                      Developed an administrative panel for Gina Ex, a platform
+                      enabling traveling users to transport parcels for other
+                      users for a fee.
+                    </li>
+                    <li>
+                      Implemented Material UI and MUI DataGrid for
+                      high-performance handling, sorting, and filtering of
+                      structured platform tables.
+                    </li>
                   </ul>
                 </div>
 
@@ -335,8 +565,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Life Fit — Live | React.js • API Integration
                   </div>
                   <ul className="mt-1 list-disc list-outside pl-4 space-y-0.75 text-[11px] text-stone-700 leading-normal">
-                    <li>Built an administrative dashboard for Life Fit, a platform providing users with fitness resources such as calorie counters and diet plans.</li>
-                    <li>Engineered reusable UI components and integrated administrative REST APIs to manage nutrition programs and user tracking features.</li>
+                    <li>
+                      Built an administrative dashboard for Life Fit, a platform
+                      providing users with fitness resources such as calorie
+                      counters and diet plans.
+                    </li>
+                    <li>
+                      Engineered reusable UI components and integrated
+                      administrative REST APIs to manage nutrition programs and
+                      user tracking features.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -348,12 +586,26 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 </h2>
                 <div className="space-y-1 text-[11px] text-stone-800">
                   <div className="flex items-center justify-between">
-                    <span><strong className="font-bold text-stone-950">Master of Computer Applications (MCA)</strong> — Panjab University, Sector 14, Chandigarh (80%)</span>
-                    <span className="font-mono text-stone-600">2022 - 2024</span>
+                    <span>
+                      <strong className="font-bold text-stone-950">
+                        Master of Computer Applications (MCA)
+                      </strong>{" "}
+                      — Panjab University, Sector 14, Chandigarh (80%)
+                    </span>
+                    <span className="font-mono text-stone-600">
+                      2022 - 2024
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span><strong className="font-bold text-stone-950">Bachelor of Computer Applications (BCA)</strong> — DAV College, Sector 10, Chandigarh (80%)</span>
-                    <span className="font-mono text-stone-600">2019 - 2021</span>
+                    <span>
+                      <strong className="font-bold text-stone-950">
+                        Bachelor of Computer Applications (BCA)
+                      </strong>{" "}
+                      — DAV College, Sector 10, Chandigarh (80%)
+                    </span>
+                    <span className="font-mono text-stone-600">
+                      2019 - 2021
+                    </span>
                   </div>
                 </div>
               </div>
@@ -364,11 +616,11 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   INTERESTS
                 </h2>
                 <p className="text-[11px] text-stone-700">
-                  Open-source development, Exploring new technologies, Photography
+                  Open-source development, Exploring new technologies,
+                  Photography
                 </p>
               </div>
             </div>
-
           </div>
         </motion.div>
       </div>
