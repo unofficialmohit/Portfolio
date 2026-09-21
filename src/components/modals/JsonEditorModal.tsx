@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Save, RotateCcw, Download, Copy, Check, AlertCircle, FileCode } from 'lucide-react';
 import { PortfolioData } from '../../types';
@@ -73,13 +74,17 @@ export const JsonEditorModal: React.FC<JsonEditorModalProps> = ({
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-[#1A1612]/60 backdrop-blur-xs">
+  return createPortal(
+    <div
+      className="fixed inset-0 flex items-center justify-center p-3 sm:p-6 bg-[#1A1612]/60 backdrop-blur-xs"
+      style={{ zIndex: 999999 }}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
         className="relative w-full max-w-5xl h-[90vh] flex flex-col rounded-2xl bg-[#FFFDF9] border border-[#DFCDB2] paper-shadow-lift overflow-hidden"
+        style={{ zIndex: 1000000 }}
       >
         {/* Modal Header */}
         <div className="p-4 sm:p-5 border-b border-[#EDE0CD] bg-[#FAF5EB] flex items-center justify-between">
@@ -229,6 +234,7 @@ export const JsonEditorModal: React.FC<JsonEditorModalProps> = ({
           </div>
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 };

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Download, FileText, ExternalLink } from "lucide-react";
 import { useBodyScrollLock } from "../../hooks/useBodyScrollLock";
@@ -12,6 +13,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Lock background scroll when modal is open
   useBodyScrollLock(isOpen);
 
@@ -26,27 +33,33 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!mounted) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-4 md:p-6 overflow-hidden">
-        {/* Backdrop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
-        />
-
-        {/* Modal Window */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 15 }}
-          className="relative w-full max-w-full sm:max-w-4xl h-[90vh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden z-10 box-border"
+      {isOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center p-2.5 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-4 md:p-6 overflow-hidden"
+          style={{ zIndex: 999999 }}
         >
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            style={{ zIndex: 999999 }}
+          />
+
+          {/* Modal Window */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 15 }}
+            className="relative w-full max-w-full sm:max-w-4xl h-[90vh] sm:h-auto sm:max-h-[92vh] flex flex-col bg-[#FAF7EE] dark:bg-[#151921] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden box-border"
+            style={{ zIndex: 1000000 }}
+          >
           {/* Header Bar */}
           <div className="w-full max-w-full flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3.5 border-b border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-[#1A202C]/95 backdrop-blur-md shrink-0 gap-2 box-border relative z-20">
             {/* Left Title & Info */}
@@ -709,6 +722,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
-  );
+    )}
+  </AnimatePresence>,
+  document.body
+);
 };
